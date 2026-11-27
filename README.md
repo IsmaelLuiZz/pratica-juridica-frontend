@@ -77,4 +77,21 @@ Em uma publicação, defina `VITE_API_URL` antes do build. Se usar `/api`, confi
 
 A stack usa React, TypeScript, Vite, React Router DOM, Axios, Lucide React e Tailwind CSS. O cliente HTTP envia o token como `Authorization: Bearer <token>`. Uma resposta `401` em rota autenticada encerra a sessão e redireciona para o login.
 
+## Comandos
 
+| Comando | Finalidade |
+| --- | --- |
+| `npm run dev` | Iniciar o Vite em desenvolvimento |
+| `npm run lint` | Executar o ESLint |
+| `npm run build` | Validar TypeScript e gerar a versão de produção em `dist/` |
+| `npm run preview` | Conferir localmente o build gerado |
+
+## Diagnóstico local
+
+- **Erro 502**. Confira se o FastAPI está em execução na porta 8000 e se o proxy do Vite consegue acessá-lo.
+- **Erro 500 após o login**. Consulte o log do FastAPI. Em bancos criados com o schema anterior, verifique a migração `migrations/001_alinhar_schema_mvp.sql` no backend.
+- **Falha de conexão**. Confira o endereço do Vite e o valor de `VITE_API_URL`. Reinicie o Vite depois de alterar o ambiente.
+
+## Limites do MVP
+
+O cadastro de documentos aceita links. Upload binário, edição de assistidos, encerramento de casos e revisão de atividades dependem de operações adicionais na API. A classificação das partes fica na descrição do caso, e o histórico usa as datas dos registros disponíveis.

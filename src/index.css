@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #162648;
+  --color-navy-active: #213767;
+  --color-gold: #c9a047;
+  --color-ivory: #f2f0ea;
+  --color-line: #e4e0d8;
+  --color-muted: #55637a;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  body { @apply bg-ivory text-navy font-sans text-sm; min-width: 320px; }
+  h1 { @apply font-serif text-3xl font-bold; }
+  h2 { @apply text-base font-bold; }
+  a { @apply font-semibold; }
+  button { @apply cursor-pointer; }
+  button:disabled { @apply cursor-not-allowed opacity-60; }
+  :focus-visible { outline: 2px solid #917021; outline-offset: 3px; }
+  input, select, textarea { @apply w-full min-w-0 rounded-lg border border-line bg-white px-3 py-2.5 text-navy; }
+  textarea { min-height: 90px; resize: vertical; }
+}
+
+@layer components {
+  .primary, .secondary { @apply inline-flex items-center justify-center gap-2 rounded-lg border px-3.5 py-2 font-semibold; }
+  .primary { @apply border-gold bg-gold text-navy hover:brightness-95; }
+  .secondary { @apply border-[#a0a9ba] bg-white text-navy hover:bg-slate-50; }
+  .icon-button { @apply px-2; }
+  .shell { @apply min-h-screen md:grid md:grid-cols-[240px_minmax(0,1fr)]; }
+  .sidebar { @apply flex flex-col gap-6 bg-navy p-4 text-white md:sticky md:top-0 md:h-screen; }
+  .brand { @apply flex items-center gap-2.5; }
+  .brand-mark { @apply inline-grid size-10 shrink-0 place-items-center rounded-xl bg-gold text-navy; }
+  .brand small, .sidebar-user small { @apply block text-xs text-slate-300; }
+  .sidebar nav { @apply flex flex-wrap gap-1 md:flex-col; }
+  .sidebar nav a { @apply flex items-center gap-2 rounded-lg border-l-2 border-transparent px-3 py-2.5 text-slate-200; }
+  .sidebar nav a.active { @apply border-gold bg-navy-active text-white; }
+  .sidebar-user { @apply mt-auto hidden rounded-lg bg-navy-active p-3 md:block; }
+  .topbar { @apply flex items-center justify-between gap-3 border-b border-line px-4 py-2.5 text-xs text-muted md:px-8; }
+  .content { @apply mx-auto max-w-[1500px] px-4 py-5 md:px-8 md:py-7; }
+  .page-heading { @apply mb-5 flex flex-wrap items-start justify-between gap-3; }
+  .page-heading p { @apply mt-1 text-muted; }
+  .panel { @apply rounded-xl border border-line bg-white p-4; }
+  .panel h2 { @apply mb-3; }
+  .filters { @apply mb-4 flex flex-wrap items-end gap-3; }
+  .filters .field { @apply min-w-36 flex-1; }
+  .field { @apply grid content-start gap-1.5 text-sm; }
+  .field > span { @apply font-medium; }
+  .table-wrap { @apply overflow-x-auto rounded-xl border border-line bg-white; }
+  table { @apply w-full border-collapse text-left; }
+  th, td { @apply border-b border-line px-4 py-3 align-middle; }
+  th { @apply text-xs font-semibold tracking-wide text-muted uppercase; }
+  tbody tr:last-child td { @apply border-b-0; }
+  .badge { @apply inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700; }
+  .badge[data-status="EM_ANDAMENTO"] { @apply bg-blue-100 text-blue-900; }
+  .badge[data-status="APROVADO"], .badge[data-status="CONCLUIDO"] { @apply bg-emerald-100 text-emerald-900; }
+  .badge[data-status="ATRASADO"], .badge[data-status="REJEITADO_AJUSTES"] { @apply bg-rose-100 text-rose-900; }
+  .badge[data-status="PENDENTE"], .badge[data-status="VENCE_EM_BREVE"] { @apply bg-amber-100 text-amber-900; }
+  .notice { @apply my-3 flex flex-wrap items-center gap-3 rounded-lg bg-white p-3 text-muted; }
+  .notice.error { @apply bg-rose-50 text-rose-900; }
+  .modal { @apply fixed inset-0 m-auto max-h-[90dvh] w-[min(600px,calc(100%-2rem))] overflow-auto rounded-xl border border-line bg-white p-5 text-navy shadow-xl; }
+  .modal::backdrop { background: #16264880; }
+  .modal-heading { @apply mb-4 flex items-center justify-between gap-4; }
+  .form-fields { @apply grid min-w-0 gap-4; }
+  .form-actions { @apply mt-1 flex flex-wrap justify-end gap-2; }
+  .privacy { @apply mt-5 flex items-start gap-2 text-xs text-muted; }
+  .privacy svg { @apply shrink-0; }
+  .login { @apply grid min-h-screen md:grid-cols-[53%_47%]; }
+  .login-brand { @apply grid content-center bg-navy px-6 py-12 text-white sm:px-[10%]; }
+  .login-brand .brand-mark { @apply mb-5 size-16; }
+  .login-brand h1 { @apply text-4xl leading-tight lg:text-5xl; }
+  .login-brand p { @apply my-4 text-slate-200; }
+  .login-brand small { @apply text-slate-300; }
+  .login-access { @apply grid content-center justify-items-center px-6 py-10; }
+  .login-access > div { @apply w-full max-w-[390px]; }
+  .login-access h2 { @apply mb-5 font-serif text-2xl; }
+  .login-access .primary { @apply w-full justify-start; }
+  .record-list { @apply divide-y divide-line; }
+  .record-list > li { @apply flex flex-wrap items-center justify-between gap-2 py-3; }
+  .record-list p { @apply text-sm text-muted; }
+}
